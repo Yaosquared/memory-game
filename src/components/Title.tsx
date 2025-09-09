@@ -1,4 +1,5 @@
 import type { TitleProps } from "../types/home";
+import "../styles/title.scss";
 
 const Title = ({ text, selectedDifficulty }: TitleProps) => {
   return (

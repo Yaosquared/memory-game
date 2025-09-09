@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { CardsProps } from "../types/home";
 import toast from "react-hot-toast";
 import Setup from "./modals/Setup";
+import "../styles/cards.scss";
 
 const Cards = ({
   shuffledValues,

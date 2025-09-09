@@ -1,0 +1,32 @@
+$lightblue: #38bdf8;
+$darkBlue: #0c4a6e;
+$lightGray: #dbdbdb;
+$white: #ffffff;
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  width: 100%;
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  button {
+    all: unset;
+    padding: 0.5rem;
+    border: 2px solid $darkBlue;
+    border-radius: 9999px;
+    background-color: $lightblue;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $darkBlue;
+      color: white;
+      transform: scale(1.05);
+    }
+  }
+}

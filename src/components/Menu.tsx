@@ -1,4 +1,5 @@
 import type { MenuProps } from "../types/home";
+import "../styles/menu.scss";
 
 const Menu = ({ handleSetup, handleReset, selectedDifficulty }: MenuProps) => {
   return (

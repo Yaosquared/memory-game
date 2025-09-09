@@ -1,5 +1,6 @@
 import { formatTime } from "../helpers/time";
 import type { MetricsProps } from "../types/home";
+import "../styles/metrics.scss";
 
 const Metrics = ({
   seconds,

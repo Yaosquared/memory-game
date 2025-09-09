@@ -1,4 +1,5 @@
 import type { LeaderboardProps, PlayerInfoProps } from "../types/home";
+import "../styles/leaderboard.scss";
 
 const Leaderboard = ({
   selectedDifficulty,

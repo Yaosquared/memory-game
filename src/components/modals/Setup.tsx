@@ -1,4 +1,5 @@
 import type { SetupProps } from "../../types/home";
+import "../../styles/setup.scss";
 
 const Setup = ({ selectedDifficulty, setSelectedDifficulty }: SetupProps) => {
   const difficultyLevels = ["Easy", "Medium", "Hard", "Extreme"];
