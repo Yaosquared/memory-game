@@ -1,20 +1,21 @@
+import { formatTime } from "../helpers/time";
 import type { MetricsProps } from "../types/home";
 
-const Metrics = ({ seconds, moveCount }: MetricsProps) => {
-  // format seconds into mm:ss format
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-
-    return `${minutes.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`;
-  };
-
+const Metrics = ({
+  seconds,
+  moveCount,
+  selectedDifficulty,
+  allowedMoves,
+}: MetricsProps) => {
   return (
     <section className="metrics">
       <h2>{formatTime(seconds)}</h2>
-      <h2>Moves: {moveCount}</h2>
+      <h2>
+        Moves:{" "}
+        {selectedDifficulty === "Extreme"
+          ? `${moveCount}/${allowedMoves}`
+          : moveCount}
+      </h2>
     </section>
   );
 };

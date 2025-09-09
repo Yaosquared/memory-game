@@ -1,5 +1,6 @@
 $lightblue: #38bdf8;
 $darkBlue: #0c4a6e;
+$lightGray: #dbdbdb;
 $white: #ffffff;
 
 .setup {
@@ -20,7 +21,7 @@ $white: #ffffff;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   animation: fadeInScale 0.3s ease;
 
   h2 {
@@ -75,8 +76,6 @@ $white: #ffffff;
   align-items: center;
   padding: 2rem;
   gap: 1rem;
-  // justify-content: center;
-  // align-items: center;
 
   > div {
     flex: 1;
@@ -84,15 +83,81 @@ $white: #ffffff;
     flex-direction: column;
   }
 
+  .sub_container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .leaderboard {
+      order: 2;
+      border: 2px solid $lightGray;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+      h2 {
+        border-bottom: 2px solid $darkBlue;
+        width: 80%;
+        padding-bottom: 0.5rem;
+        text-align: center;
+      }
+
+      .no_record {
+        color: $lightGray;
+        font-size: 1rem;
+      }
+
+      .top_players {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid $darkBlue;
+        background-color: $lightblue;
+        border-radius: 4px;
+        padding: 1rem 2rem;
+        cursor: default;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: $darkBlue;
+          color: white;
+          transform: scale(1.05);
+        }
+
+        .player_info,
+        .game_info {
+          display: flex;
+          gap: 1rem;
+        }
+
+        .player_info {
+          font-weight: bold;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .cards_section {
+      order: 1;
+    }
+  }
+
   .cards {
     flex: 1;
     display: grid;
     gap: 0.25rem;
     min-width: 300px;
-    border: 2px solid #dbdbdb;
+    border: 2px solid $lightGray;
     padding: 0.5rem;
     border-radius: 8px;
     perspective: 1000px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 
     .card {
       width: 100%;
@@ -177,17 +242,32 @@ $white: #ffffff;
 // for laptop devices
 @media only screen and (min-width: 1024px) {
   .container {
-    .cards {
-      min-width: 350px;
+    .sub_container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+
+      .leaderboard {
+        order: 1;
+        max-width: 400px;
+      }
+
+      .cards_section {
+        display: flex;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        width: 700px;
+        max-width: 400px;
+
+        .cards {
+          max-width: 400px;
+        }
+      }
     }
   }
 }
 
 // for desktop devices
 @media only screen and (min-width: 1440px) {
-  .container {
-    .cards {
-      min-width: 390px;
-    }
-  }
 }

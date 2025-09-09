@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { CardsProps } from "../types/home";
 import toast from "react-hot-toast";
 import Setup from "./modals/Setup";
@@ -16,12 +16,14 @@ const Cards = ({
   selectedDifficulty,
   setSelectedDifficulty,
   gridSize,
+  compareToTopPlayers,
+  moveCount,
+  allowedMoves,
+  seconds,
+  gameStarted,
 }: CardsProps) => {
-  // console.log("firstGuessIndex: ", firstGuessIndex);
-  // console.log("secondGuessIndex: ", secondGuessIndex);
-  // console.log("shuffledValues: ", shuffledValues.length);
-  // console.log("matchedCards: ", matchedCards.length);
-  // console.log(selectedDifficulty);
+  const [gameWon, setGameWon] = useState(false);
+  const [gameLost, setGameLost] = useState(false);
 
   const handleMatch = (index: number) => {
     if (firstGuessIndex === index) return;
@@ -54,15 +56,51 @@ const Cards = ({
   }, [firstGuessIndex, secondGuessIndex]);
 
   useEffect(() => {
-    const hasGameStarted = shuffledValues.length > 0 && matchedCards.length > 0;
+    if (!gameStarted) return;
 
-    if (hasGameStarted && matchedCards.length === shuffledValues.length) {
+    const isExtremeMode = selectedDifficulty === "Extreme";
+    const hasGameEnded = gameWon || gameLost;
+
+    const lossCondition =
+      isExtremeMode && (moveCount >= allowedMoves || seconds === 0);
+    const winCondition =
+      shuffledValues.length > 0 &&
+      matchedCards.length === shuffledValues.length &&
+      !gameWon;
+
+    if (winCondition && !hasGameEnded) {
+      setGameWon(true);
+      compareToTopPlayers();
+
       toast.success("You win!");
       setTimeout(() => {
         handleReset();
+        setGameLost(false);
+      }, 1500);
+    } else if (lossCondition && !hasGameEnded) {
+      setGameLost(true);
+      toast.error("You lost. Try again");
+
+      setTimeout(() => {
+        handleReset();
+        setGameLost(false);
       }, 1500);
     }
-  }, [matchedCards, shuffledValues.length, handleReset]);
+  }, [
+    matchedCards,
+    shuffledValues.length,
+    handleReset,
+    gameWon,
+    moveCount,
+    allowedMoves,
+    seconds,
+    selectedDifficulty,
+  ]);
+
+  useEffect(() => {
+    setGameWon(false);
+    setGameLost(false);
+  }, [shuffledValues]);
 
   return (
     <>

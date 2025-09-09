@@ -11,6 +11,8 @@ export interface TitleProps {
 export interface MetricsProps {
   seconds: number;
   moveCount: number;
+  selectedDifficulty: string;
+  allowedMoves: number;
 }
 
 export interface CardsProps {
@@ -26,9 +28,31 @@ export interface CardsProps {
   selectedDifficulty: string | null;
   setSelectedDifficulty: (value: string) => void;
   gridSize: number;
+  compareToTopPlayers: () => void;
+  moveCount: number;
+  allowedMoves: number;
+  seconds: number;
+  gameStarted: boolean;
 }
 
 export interface MenuProps {
   handleSetup: () => void;
   handleReset: () => void;
+  selectedDifficulty: string | null;
+}
+
+export interface LeaderboardProps {
+  selectedDifficulty: string | null;
+  easyModeTopPlayers: PlayerInfoProps[];
+  mediumModeTopPlayers: PlayerInfoProps[];
+  hardModeTopPlayers: PlayerInfoProps[];
+  extremeModeTopPlayers: PlayerInfoProps[];
+}
+
+export interface PlayerInfoProps {
+  id: number;
+  rank: number;
+  player: string;
+  movesUsed: number;
+  time: string;
 }
