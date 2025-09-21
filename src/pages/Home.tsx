@@ -225,7 +225,9 @@ const Home = () => {
 
   return (
     <main className="container">
-      <Title text="Memory Game" selectedDifficulty={selectedDifficulty} />
+      {selectedDifficulty ? (
+        <Title text="Memory Game" selectedDifficulty={selectedDifficulty} />
+      ) : null}
       <div className="sub_container">
         <Leaderboard
           selectedDifficulty={selectedDifficulty}

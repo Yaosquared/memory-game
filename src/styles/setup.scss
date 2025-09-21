@@ -63,6 +63,7 @@
           background-color: $lightblue;
           cursor: pointer;
           transition: all 0.2s ease;
+          font-weight: 600;
 
           &:hover,
           &.selected {
@@ -83,6 +84,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: center;
+      font-weight: 600;
 
       &:hover {
         background-color: $darkBlue;
