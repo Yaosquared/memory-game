@@ -1,7 +1,4 @@
-$lightblue: #38bdf8;
-$darkBlue: #0c4a6e;
-$lightGray: #dbdbdb;
-$white: #ffffff;
+@import "app";
 
 .cards {
   flex: 1;
@@ -13,6 +10,7 @@ $white: #ffffff;
   border-radius: 8px;
   perspective: 1000px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 1/2;
 
   .card {
     width: 100%;

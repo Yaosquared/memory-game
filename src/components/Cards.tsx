@@ -45,9 +45,7 @@ const Cards = ({
       if (firstValue === secondValue) {
         toast.success("Correct pair!");
         setMatchedCards((prev) => [...prev, firstGuessIndex, secondGuessIndex]);
-      } else {
-        toast.error("Wrong pair. Keep going!");
-      }
+      } 
 
       setTimeout(() => {
         setFirstGuessIndex(null);
