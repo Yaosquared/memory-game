@@ -10,7 +10,7 @@ import { formatTime, parseTime } from "../helpers/time";
 
 const Home = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(
-    "Medium"
+    null
   );
   const [values, setValues] = useState<number[]>([]);
   const [shuffledValues, setShuffledValues] = useState<number[]>([]);
@@ -48,6 +48,22 @@ const Home = () => {
     PlayerInfoProps[]
   >(storedExtremeModeTopPlayers);
 
+  useEffect(() => {
+    const storedPreferences = localStorage.getItem("playerPreferences");
+    if (!storedPreferences) {
+      return;
+    } else {
+      try {
+        const parsedPreferences = JSON.parse(storedPreferences);
+        if (parsedPreferences?.selectedLevel) {
+          setSelectedDifficulty(parsedPreferences.selectedLevel);
+        }
+      } catch {
+        console.error("Invalid playerPreferences in localStorage.");
+      }
+    }
+  }, []);
+
   // dynamically set grid based on selected difficulty
   useEffect(() => {
     let tempValues: number[] = [];
@@ -56,7 +72,9 @@ const Home = () => {
       tempValues = Array.from({ length: 2 }, (_, i) => i + 1);
     } else if (selectedDifficulty === "Medium") {
       tempValues = Array.from({ length: 8 }, (_, i) => i + 1);
-    } else {
+    } else if (selectedDifficulty === "Hard") {
+      tempValues = Array.from({ length: 18 }, (_, i) => i + 1);
+    } else if (selectedDifficulty === "Extreme") {
       tempValues = Array.from({ length: 18 }, (_, i) => i + 1);
     }
 
@@ -173,10 +191,15 @@ const Home = () => {
       localStorage.getItem(`${mode}`) || "[]"
     );
 
+    const playerPreferences = JSON.parse(
+      localStorage.getItem("playerPreferences") || "{}"
+    );
+    const playerName = playerPreferences.playerName || "Guest";
+
     const newPlayer: PlayerInfoProps = {
       id: storedPlayers.length + 1,
       rank: 0,
-      player: "Current Player",
+      player: playerName,
       movesUsed: moveCount,
       time: formatTime(seconds),
     };
@@ -202,7 +225,9 @@ const Home = () => {
 
   return (
     <main className="container">
-      <Title text="Memory Game" selectedDifficulty={selectedDifficulty} />
+      {selectedDifficulty ? (
+        <Title text="Memory Game" selectedDifficulty={selectedDifficulty} />
+      ) : null}
       <div className="sub_container">
         <Leaderboard
           selectedDifficulty={selectedDifficulty}

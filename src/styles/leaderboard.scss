@@ -2,7 +2,6 @@
 
 .leaderboard {
   order: 2;
-  border: 2px solid $lightGray;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -20,7 +19,7 @@
   }
 
   .no_record {
-    color: $lightGray;
+    color: $darkBlue;
     font-size: 1rem;
   }
 
@@ -33,6 +32,8 @@
     background-color: $lightblue;
     border-radius: 4px;
     padding: 1rem 2rem;
+    width: 100%;
+    max-width: 300px;
     cursor: default;
     transition: all 0.2s ease;
 
@@ -50,7 +51,21 @@
 
     .player_info {
       font-weight: bold;
-      font-size: 1.1rem;
+    }
+
+    .game_info {
+      font-size: small;
+    }
+  }
+}
+
+// for tablet devices
+@media only screen and (min-width: 768px) {
+  .leaderboard {
+    .top_players {
+      .game_info {
+        font-size: medium;
+      }
     }
   }
 }

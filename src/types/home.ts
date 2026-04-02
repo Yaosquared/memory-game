@@ -1,5 +1,4 @@
 export interface SetupProps {
-  selectedDifficulty: string | null;
   setSelectedDifficulty: (value: string) => void;
 }
 

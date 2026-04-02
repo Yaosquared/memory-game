@@ -12,7 +12,7 @@
   padding: 2rem;
   border: none;
   border-radius: 12px;
-  background-color: $white;
+  background-color: transparent;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
@@ -21,25 +21,70 @@
   gap: 1.5rem;
   animation: fadeInScale 0.3s ease;
 
-  h2 {
-    font-size: 1.5rem;
+  h3 {
+    font-size: 1.2rem;
     text-align: center;
   }
 
-  .difficulty_options {
+  form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .player_section,
+    .difficulty_section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .player_section {
+      input {
+        all: unset;
+        border: 2px solid $darkBlue;
+        border-radius: 5px;
+        padding: 0.4rem;
+      }
+    }
+
+    .difficulty_section {
+      .difficulty_options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        button {
+          all: unset;
+          padding: 0.5rem;
+          border: 2px solid $darkBlue;
+          border-radius: 9999px;
+          background-color: $lightblue;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          font-weight: 600;
+
+          &:hover,
+          &.selected {
+            background-color: $darkBlue;
+            color: $white;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
 
     button {
       all: unset;
       padding: 0.5rem;
       border: 2px solid $darkBlue;
-      border-radius: 9999px;
+      border-radius: 10px;
       background-color: $lightblue;
       cursor: pointer;
       transition: all 0.2s ease;
+      text-align: center;
+      font-weight: 600;
 
       &:hover {
         background-color: $darkBlue;

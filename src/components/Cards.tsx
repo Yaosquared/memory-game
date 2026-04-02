@@ -45,7 +45,7 @@ const Cards = ({
       if (firstValue === secondValue) {
         toast.success("Correct pair!");
         setMatchedCards((prev) => [...prev, firstGuessIndex, secondGuessIndex]);
-      } 
+      }
 
       setTimeout(() => {
         setFirstGuessIndex(null);
@@ -132,10 +132,7 @@ const Cards = ({
           })}
         </section>
       ) : (
-        <Setup
-          selectedDifficulty={selectedDifficulty}
-          setSelectedDifficulty={setSelectedDifficulty}
-        />
+        <Setup setSelectedDifficulty={setSelectedDifficulty} />
       )}
     </>
   );
